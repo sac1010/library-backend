@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
 
 const trackingSchema = new mongoose.Schema({
-    book:{type:mongoose.Schema.Types.ObjectId, required:true},
-    status:{type:String, required:true},
+    bookId:{type:mongoose.Schema.Types.ObjectId, required:true},
+    action:{type:String, required:true},
     userId: {type:mongoose.Schema.Types.ObjectId, required:true}
 },
 {

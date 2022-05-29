@@ -34,4 +34,15 @@ router.get("/", async(req, res)=>{
     
 })
 
+router.get("/status/:bookId", async(req, res)=>{
+    try{
+        const book = await Books.findById(req.params.bookId).lean().exec()
+        res.status(200).send(book.status)
+    }
+    catch(err){
+        res.status(500).send(err.message)
+    }
+
+})
+
 module.exports = router
