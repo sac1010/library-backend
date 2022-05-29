@@ -4,8 +4,8 @@ const Books = require("../models/books.model")
 
 router.post("/", async(req, res)=>{
     try{
-        const books = await Books.find().lean().exec()
-        res.status(200).send(books)
+        const book = await Books.create(req.body)
+        res.status(201).send(book)
     }
     catch(err){
         res.send(err.message)
