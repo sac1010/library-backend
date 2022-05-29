@@ -15,17 +15,17 @@ router.post("/", async(req, res)=>{
 
 router.get("/", async(req, res)=>{
     const filter = {}
-    if(req.params.category){
-        filter.category = req.params.category
+    if(req.query.category){
+        filter.category = { $regex: new RegExp(`^${req.query.category}$`), $options: 'i' } 
     }
-    if(req.params.author){
-        filter.author = req.params.author
+    if(req.query.author){
+        filter.author = { $regex: new RegExp(`^${req.query.author}$`), $options: 'i' } 
     }
-    if(req.params.title){
-        filter.category = req.params.title
+    if(req.query.title){
+        filter.title = { $regex: new RegExp(`^${req.query.title}$`), $options: 'i' } 
     }
     try{
-        const books = await Books.find(filter).lean().exec()
+        const books = await Books.find(filter)
         res.status(200).send(books)
     }
     catch(err){
