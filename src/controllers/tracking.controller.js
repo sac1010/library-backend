@@ -13,7 +13,7 @@ router.post("/buy", async(req, res)=>{
             const order = await Tracking.create(req.body)
             book.status = "unavailable"
             const updatedBook = await Books.findByIdAndUpdate(req.body.bookId, book)
-            res.status(201).send(order)
+            res.status(201).send({message:"order successful", order})
         }             
     }
     catch(err){
